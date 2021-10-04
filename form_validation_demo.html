@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Form Validation</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="pageStyle.css">
+        <style>
+            #logout {
+                float: right;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div class="menu">
+            <a href="index.html" >Home</a>
+            <a href="examples.html">Examples</a>
+            <a href="about.html">About</a>
+            <a href="ajax.html">AJAX</a>
+            <a href="DatabaseFormsAndReport.html">Database input</a>
+            <div id="logout">
+                <a href="home.php" >Log out</a>
+            </div>
+        </div>
+        <br>
+        <div class="content">    
+
+            <h3><a href="index.html">Home Page</a></h3>
+            <h3><a href="wordpressblog.html">My Wordpress Blog</a></h3>
+
+            <fieldset style="margin:auto">
+                <legend>Validation using an Alert Box</legend>
+                <form name="myForm" action="#return" onsubmit="return validateForm()" method="post">
+                    <p>Do not enter text but click on submit. What Happens?</p>
+                    <p>First Name: <input type="text" name="fname"></p>
+                    <input type="submit" value="Submit">
+                </form>
+            </fieldset>
+            <br>
+            <br>
+            <fieldset>
+                <legend>Number Validation</legend>
+                <p>How many years have you been at OC? Enter a number between 1 an 10.</p>
+                <input id="numb">
+                <button type="button" onclick="checkInput()">Submit</button>
+                <p id="demo"></p>
+
+            </fieldset>
+            <br>
+            <br>
+            <fieldset>
+                <legend>Input Validation</legend>
+                <form method="post" action="#return" autocomplete="on">
+                    <label for="fname">First name:</label>
+                    <input type="text" id="fname" name="fname" required><br><br>
+                    <label for="lname">Last name:</label>
+                    <input type="text" id="lname" name="lname" required><br><br>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" autocomplete="off" required><br><br>
+                    <input type="submit" value="Submit">
+                </form>
+            </fieldset>
+            <br>
+            <br>
+            <p>Created in November 2020!</p>
+        </div>
+        <script>
+            function validateForm() {
+                var x = document.forms["myForm"]["fname"].value;
+                if (x == "") {
+                    alert("First Name field must be filled out. This is an example of an alert box!");
+                    return false;
+                }
+            }
+            function checkInput() {
+                var x, text;
+
+                // Get the value of the input field with id="numb"
+                x = document.getElementById("numb").value;
+
+                // If x is Not a Number or less than one or greater than 10
+                if (isNaN(x) || x < 1 || x > 10) {
+                    text = "Invalid input. Enter a value between 1 and 10 inclusive";
+                } else {
+                    text = "Input OK ... THIS IS VALIDATION ON ONE LINE BELOW THE FIELD!";
+                }
+                document.getElementById("demo").innerHTML = text;
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,67 @@
+
+img{
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    max-height: 500px;
+    height: 100%;
+    width: auto;
+
+}
+a{
+    color: black;
+}
+body{
+    background: url('pictures/1.jpg');
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+
+}
+.content {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+    max-width: 1000px;
+    min-height: 1000px;
+    margin: auto;
+    padding: 25px;
+    background:  #f2f2f2;
+}
+/* Add a black background color to the top navigation */
+.menu {
+    position: relative;
+    background-color: #6D6E6E;
+
+    margin-bottom: 60px;
+}
+
+/* Style the links inside the navigation bar */
+.menu a {
+    display: inline-block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 20px 25px;
+    text-decoration: none;
+    font-size: 17px;
+
+}
+
+/* Change the color of links on hover */
+.menu a:hover {
+    background-color: #b3b3b3;
+    color: black;
+}
+fieldset, legend{
+    margin: 0 auto;
+    color: black;
+    max-width: 600px;
+}
+
+/* Responsive navigation menu - display links on top of each other instead of next to each other (for mobile devices) */
+@media screen and (max-width: 600px) {
+    .menu a {
+        float: none;
+        display: block;
+    }
+}

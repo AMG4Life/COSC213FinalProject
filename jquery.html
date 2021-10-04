@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>JQUERY</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="pageStyle.css">
+        <style>
+            #logout {
+                float: right;
+            }
+        </style>
+        <!<!-- AJAX Idea taken from W3 schools -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $("img").click(function () {
+                    $(this).slideUp();
+                });
+            });
+        </script>
+    </head>
+    <body>
+
+        <div class="menu">
+            <a href="index.html" >Home</a>
+            <a href="examples.html">Examples</a>
+            <a href="about.html">About</a>
+            <a href="ajax.html">AJAX</a>
+            <a href="DatabaseFormsAndReport.html">Database input</a>
+            <div id="logout">
+                <a href="home.php" >Log out</a>
+            </div>
+        </div>
+        <br>
+
+        <div class="content">
+            <h3>Here is an example of using JQuery. </h3>
+            <p>Click any image to hide it!</p>
+            <img src="pictures/2.jpg" style="width: 400px;">
+            <img src="pictures/3.jpg" style="width: 400px;">
+            <img src="pictures/4.jpg" style="width: 400px;">
+
+        </div>
+    </body>
+</html>

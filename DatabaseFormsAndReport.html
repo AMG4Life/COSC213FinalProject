@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Forms and reports</title>
+
+
+        <script>
+            function validateForm() {
+                var f = document.forms["myForm"]["firstName"].value;
+                var l = document.forms["myForm"]["lastName"].value;
+                var e = document.forms["myForm"]["email"].value;
+
+                if (f == "") {
+                    alert(" First Name must be filled out");
+                    return false;
+                }
+                if (l == "") {
+                    alert("Last Name must be filled out");
+                    return false;
+                }
+                if (e == "") {
+                    alert("Email must be filled out ");
+                    return false;
+                }
+            }
+
+        </script>
+        <link rel="stylesheet" href="pageStyle.css">
+        <style>
+            #logout {
+                float: right;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="menu">
+            <a href="index.html" >Home</a>
+            <a href="examples.html">Examples</a>
+            <a href="about.html">About</a>
+            <a href="ajax.html">AJAX</a>
+            <a href="DatabaseFormsAndReport.html">Database input</a>
+            <div id="logout">
+                <a href="home.php" >Log out</a>
+            </div>
+        </div>
+        <br>
+        <div class="content">
+            <h2>Submit information below to input the information into a database<br></h2>
+
+            <fieldset>
+                <legend >Input Validation</legend>
+                <form name="myForm" onsubmit="return validateForm()" method="post" action="input.php">
+
+                    First Name: <input type="text" name="firstName" ><br><br>
+
+                    Last Name: <input type="text" name="lastName" ><br><br>
+
+                    Email: <input type="email"  name="email" autocomplete="off" ><br><br>
+                    <input type="submit" value="Submit">
+                </form>
+            </fieldset>
+            <br>
+            <p><a href="print.php">Get all the data in the table</a></p>
+            <p>Created in November 2020!</p>
+        </div>
+    </body>
+</html>

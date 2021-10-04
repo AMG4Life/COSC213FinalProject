@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>AJAX</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="pageStyle.css">
+        <style>
+            #logout {
+                float: right;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div class="menu">
+            <a href="index.html" >Home</a>
+            <a href="examples.html">Examples</a>
+            <a href="about.html">About</a>
+            <a href="ajax.html">AJAX</a>
+            <a href="DatabaseFormsAndReport.html">Database input</a>
+            <div id="logout">
+                <a href="home.php" >Log out</a>
+            </div>
+        </div>
+        <div class="content">
+
+
+
+            <h2>AJAX Example</h2>
+            <fieldset style="margin:auto; min-height: 50px;">
+                <legend>View Pictures</legend>
+                <p>Click <strong>view picture</strong> to view pictures</p>
+                <div id="picture"></div>
+                <div id="button"></div>
+                <div id="picbuttton">
+                    <button type="button" onclick="loadDoc('ajax.html', myFunction())">view pictures</button>
+                </div>
+            </fieldset>
+            <br>
+            <fieldset style="margin:auto; min-height: 50px;">
+                <legend>POST Method</legend>
+                <p>Click <strong>send email</strong> to send your email to the server <br>using the POST method</p>
+
+                <div id="postSect"></div>
+                <form onsubmit="return postMethod()">
+                    <input type="email" required id="postInput" name="postButton">
+                    <input type="submit" value="send mail">
+                </form>
+            </fieldset>
+            <br>
+
+            <fieldset style="margin:auto; min-height: 50px;">
+                <legend>GET Method</legend>
+                <p>Click <strong>retrieve email</strong> to get your email from the server <br>using the GET method</p>
+
+                <div id="getSect"></div>
+                <form onsubmit="return getMethod()">
+                    <input type="email" required id="getInput" name="getInput">
+                    <input type="submit" value="retrieve mail">
+                </form>
+            </fieldset>
+        </div>    
+
+
+        <script>
+            var count = 1;
+            function loadDoc(method, url, cFunction) {
+                var xhttp = new XMLHttpRequest();
+
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        cFunction(this);
+                    }
+                };
+                xhttp.open(method, url, true);
+                xhttp.send();
+            }
+
+            function postMethod() {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("postSect").innerHTML = this.responseText;
+                    }
+                };
+                var email = document.getElementById("postInput").value;
+                xhttp.open("POST", "post-get/postEmail.php", true);
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhttp.send("email=" + email + "");
+                return false;
+            }
+            function getMethod() {
+                var xhttp = new XMLHttpRequest();
+
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("getSect").innerHTML = this.responseText;
+                    }
+                };
+                var email = document.getElementById("getInput").value;
+                xhttp.open("GET", "post-get/getEmail.php?email=" + email + "", true);
+                xhttp.send();
+                return false;
+            }
+
+            function myFunction(img) {
+
+
+                if (img === 'show') {
+                    document.getElementById("picture").innerHTML =
+                            "<p>Here are some of the many photos that I have taken over the years</p> \n\
+                            <img src=\"pictures/1.jpg\">";
+                    document.getElementById("button").innerHTML =
+                            "<button type=\"button\" onclick=\"loadDoc('ajax.html', myFunction('prev'))\">previous</button>\n\
+                            <button type=\"button\" onclick=\"loadDoc('ajax.html', myFunction('show'))\">start</button>\n\
+                            <button type=\"button\" onclick=\"loadDoc('ajax.html', myFunction('next'))\">next</button>\n\
+                            <br><br>";
+
+                } else if (img === 'next') {
+                    if (count === 4) {
+                        count = 1
+                    }
+                    count++;
+                    document.getElementById("picture").innerHTML =
+                            "<p>Here are some of the many photos that I have taken over the years</p>\n\
+                             <img src=\"pictures/" + count + ".jpg\">";
+                    document.getElementById("button").innerHTML =
+                            "<button type=\"button\" onclick=\"loadDoc('ajax.html', myFunction('prev'))\">previous</button>\n\
+                            <button type=\"button\" onclick=\"loadDoc('ajax.html', myFunction('show'))\">start</button>\n\
+                            <button type=\"button\" onclick=\"loadDoc('ajax.html', myFunction('next'))\">next</button>\n\
+                            <br><br>";
+
+                } else {
+                    if (count === 1) {
+                        count = 4
+                    }
+                    count--;
+                    document.getElementById("picture").innerHTML =
+                            "<p>Here are some of the many photos that I have taken over the years</p>\n\
+                             <img src=\"pictures/" + count + ".jpg\">";
+                    document.getElementById("button").innerHTML =
+                            "<button type=\"button\" onclick=\"loadDoc('ajax.html', myFunction('prev'))\">previous</button>\n\
+                            <button type=\"button\" onclick=\"loadDoc('ajax.html', myFunction('show'))\">start</button>\n\
+                            <button type=\"button\" onclick=\"loadDoc('ajax.html', myFunction('next'))\">next</button>\n\
+                            <br><br>";
+                }
+            }
+        </script>
+    </body>
+</html>
